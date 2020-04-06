@@ -1,0 +1,72 @@
+HEADER<{{
+package com.cyberark;
+
+import org.graphwalker.core.machine.ExecutionContext;
+import org.graphwalker.java.annotation.GraphWalker;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import org.graphwalker.core.condition.EdgeCoverage;
+import org.graphwalker.core.condition.ReachedVertex;
+import org.graphwalker.core.generator.AStarPath;
+import org.graphwalker.core.generator.RandomPath;
+import org.graphwalker.core.model.Edge;
+import org.graphwalker.java.test.TestBuilder;
+import org.graphwalker.core.condition.TimeDuration;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+
+/** 
+* Set Class name
+* Set Model name this class implements
+* Set Model name in MODEL_PATH
+* Set vertex name for the smoke-test to stop at
+*/
+
+/** *** Set Class & Model names *** */
+public class MyTest extends ExecutionContext implements MyModel {
+
+  public final static Path MODEL_PATH = Paths.get("com/cyberark/MyModel.json"); // *** Set model name ***
+}}>HEADER
+  @Override
+  public void {LABEL}()
+  {
+    System.out.println( "{LABEL}" );
+    // throw new RuntimeException( "{LABEL} is not implemented yet!" );
+  }
+FOOTER<{{
+  @Test
+    public void runSmokeTest() {
+        new TestBuilder()
+                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                        MODEL_PATH,
+                        new AStarPath(new ReachedVertex("v_MyVertex"))) // *** Set vertex name of the vertex to stop at ***
+                .execute();
+    }
+
+    @Test
+    public void runFunctionalTest() {
+        new TestBuilder()
+                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                        MODEL_PATH,
+                        new RandomPath(new EdgeCoverage(100))) // cover all edges
+                .execute();
+    }
+
+    @Test
+    public void runStabilityTest() {
+        new TestBuilder()
+                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                        MODEL_PATH,
+                        new RandomPath(new TimeDuration(1, TimeUnit.SECONDS))) // run the test for 1 second
+                .execute();
+    }
+}
+}}>FOOTER
