@@ -143,7 +143,8 @@ we will add the second model json file.
 
 $ mvn clean graphwalker:generate-sources
 
-check the generated offline test cases
+check the generated offline test cases:
+https://groups.google.com/forum/#!searchin/graphwalker/shared|sort:date/graphwalker/ahBJuXJusXM/H5-dIoXVAgAJ
 java -jar ../lib/graphwalker-cli-4.2.0.jar offline  -m src/main/resources/com/cyberark/BstModel1.json "random(edge_coverage(100))" -m src/main/resources/com/cyberark/BstModel2.json "random(edge_coverage(100))" | jq '.currentElementName'
 
 --------------------------------------------------------------------------------
@@ -170,6 +171,7 @@ public final static Path MODEL2_PATH = Paths.get("com/cyberark/BstModel2.json");
 8. copy the updated code of the @Test methods
 
 9. to enable use of global variables in the models:
+    https://groups.google.com/forum/#!topic/graphwalker/lZi0_MWKPNM
 
     9.1. add the following imports in BstTest.java:
         import javax.script.Bindings;
