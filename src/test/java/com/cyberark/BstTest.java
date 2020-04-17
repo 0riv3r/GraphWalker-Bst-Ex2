@@ -38,7 +38,6 @@ public class BstTest extends ExecutionContext implements BstModel {
   private HashSet<Integer> inTree;      // the current values in the tree, use set to avoid duplicates (like the tree does)
   private Stack<Integer> nodesStack;    // used to pop leaves in deletion test, in order to delete leaves
   private Random rand;
-  private int intResult;
   private boolean boolResult;
 
   @Override
@@ -56,6 +55,11 @@ public class BstTest extends ExecutionContext implements BstModel {
   public void e_Find()
   {
     System.out.println( "e_Find" );
+
+    System.out.println( "bst.nodes: " + Arrays.toString(bst.nodes().toArray()));
+    System.out.println( "inTree: " + Arrays.toString(inTree.toArray()));
+    System.out.println( "nodesStack: " + Arrays.toString(nodesStack.toArray()));
+
     //convert HashSet to an array to fetch element by random index
     Integer[] arrInTreeVals = inTree.toArray( new Integer[inTree.size()] );
     int randomIndex = rand.nextInt(inTree.size());
@@ -81,7 +85,6 @@ public class BstTest extends ExecutionContext implements BstModel {
     inTree = new HashSet<Integer>();
     nodesStack = new Stack<Integer>();
     rand = new Random();
-    intResult = 0;
     boolResult = false;
   }
 
@@ -114,7 +117,6 @@ public class BstTest extends ExecutionContext implements BstModel {
     // The last inserted value is a leaf and should be deleted
     int valToDelete = nodesStack.pop();
     inTree.remove(valToDelete);
-    intResult = bst.nodes().size();
     bst.delete(valToDelete);
   }
 
@@ -178,7 +180,7 @@ public class BstTest extends ExecutionContext implements BstModel {
     System.out.println( "inTree: " + Arrays.toString(inTree.toArray()));
     System.out.println( "nodesStack: " + Arrays.toString(nodesStack.toArray()));
 
-    assertEquals(intResult-1, bst.nodes().size());
+    assertEquals(inTree.size(), bst.nodes().size());
   }
 
   @Override
