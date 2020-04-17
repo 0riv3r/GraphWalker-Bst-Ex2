@@ -116,30 +116,38 @@ public class Bst<T extends Comparable<T>> {
         return node.element;
     }
 
-    private boolean _deleteLeaf(Node node, T value) {
+    private Node _deleteLeaf(Node node, T value) {
         /** if the value is not found */
         if (node == null)
             // not found
-            return false;
+            return null;
         /** if the value is found */
         if (value.compareTo(node.element) == 0) {
             // is it a leaf? if yes, delete it
             if(node.left == null && node.right == null){
-                node = null;
-                return true;
+                if(node == root)
+                    root = null;
+                return null;
             }
             else{
                 // not a leaf
-                return false;
+                return node;
             }
         }
+        
         /** Otherwise, continue the search recursively */
-        return value.compareTo(node.element) < 0 ? _deleteLeaf(node.left, value) : _deleteLeaf(node.right, value);
+        if(value.compareTo(node.element) < 0){
+            node.left = _deleteLeaf(node.left, value);
+        }
+        else {
+            node.right = _deleteLeaf(node.right, value);
+        }
+        return node;
     }
 
     // delete if leaf
-    public boolean delete(T value) {
-        return _deleteLeaf(root, value);
+    public void delete(T value) {
+        _deleteLeaf(root, value);
     }
 
     public static void main(String[] args) {
