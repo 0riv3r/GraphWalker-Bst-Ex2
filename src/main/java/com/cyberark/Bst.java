@@ -116,6 +116,7 @@ public class Bst<T extends Comparable<T>> {
         return node.element;
     }
 
+ 
     private Node _deleteLeaf(Node node, T value) {
         /** if the value is not found */
         if (node == null)
@@ -150,24 +151,21 @@ public class Bst<T extends Comparable<T>> {
         _deleteLeaf(root, value);
     }
 
+
     public static void main(String[] args) {
         Bst<Integer> bst = new Bst<Integer>();
         // values are taken from https://en.wikipedia.org/wiki/Binary_search_tree
+        bst.add(8);
         bst.add(14);
-        bst.add(1);
+        bst.add(4);
         bst.add(13);
         bst.add(6);
-        bst.add(8);
         bst.add(7);
         bst.add(10);
-        bst.add(4);
+        bst.add(1);
         bst.add(3);
-        assert(bst.find(14) == true);
-        assert(bst.find(42) == false);
-        assert(bst.smallest() == 1);
-        assert(bst.largest() == 14);
-
-        List<Integer> expected = (List<Integer>) asList(1, 3, 4, 6, 7, 8, 10, 13, 14);
-        assert(bst.nodes().equals(expected));
+        System.out.println( "||||||||||||||||||||||||||||||" );
+        System.out.println( bst.nodes() );
+        System.out.println( "||||||||||||||||||||||||||||||" );
     }
 }

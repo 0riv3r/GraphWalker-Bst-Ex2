@@ -21,6 +21,7 @@ import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.model.Edge;
 import org.graphwalker.java.test.TestBuilder;
 import org.graphwalker.core.condition.TimeDuration;
+import org.graphwalker.core.condition.VertexCoverage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -203,14 +204,14 @@ public class BstTest extends ExecutionContext implements BstModel {
     // throw new RuntimeException( "v_MenuDispatcher is not implemented yet!" );
   }
 
-  // @Test
-  //   public void runSmokeTest() {
-  //       new TestBuilder()
-  //               .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
-  //                       MODEL_PATH,
-  //                       new RandomPath(new EdgeCoverage(30)))
-  //               .execute();
-  //   }
+  @Test
+    public void runSmokeTest() {
+        new TestBuilder()
+                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                        MODEL_PATH,
+                        new RandomPath(new EdgeCoverage(30)))
+                .execute();
+    }
 
     @Test
     public void runFunctionalTest() {
@@ -218,6 +219,9 @@ public class BstTest extends ExecutionContext implements BstModel {
                 .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
                         MODEL_PATH,
                         new RandomPath(new EdgeCoverage(100)))
+                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                        MODEL_PATH,
+                        new RandomPath(new VertexCoverage(100)))
                 .execute();
     }
 

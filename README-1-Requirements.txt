@@ -137,6 +137,3 @@ $ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
  
  
 $ mvn clean graphwalker:generate-sources test site jacoco:prepare-agent jacoco:report
-The final GraphWalker-Bst-Ex2 project can be downloaded or cloned from:
-
-https://github.com/0riv3r/GraphWalker-Bst-Test2
