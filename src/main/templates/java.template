@@ -42,6 +42,9 @@ public class MyTest extends ExecutionContext implements MyModel {
     // throw new RuntimeException( "{LABEL} is not implemented yet!" );
   }
 FOOTER<{{
+
+  /** *** Set the Class names in the tests *** */
+  
   @Test
     public void runSmokeTest() {
         new TestBuilder()
