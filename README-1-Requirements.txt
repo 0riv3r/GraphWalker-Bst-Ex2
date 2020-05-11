@@ -78,7 +78,7 @@ Open browser at: http://localhost:9090/studio.html
 
 Open the models json file:
 
-src/main/resources/com/cyberark/BstModel.json
+src/test/resources/com/cyberark/BstModel.json
 
 change the model to be as in this diagram:
 
@@ -103,17 +103,17 @@ add the action 'added=false;' under the model 'Actions'
 add the guard 'added==true;' on edge 'e_Find'
 add the action 'added=true;' on edge 'e_Add'
 add the guard 'added==true;' on edge 'e_Delete'
-save the model as src/main/resources/com/cyberark/BstModel.json file
+save the model as src/test/resources/com/cyberark/BstModel.json file
 
 Check the generated offline test cases:
 
 Generate offline test cases
-java -jar ../lib/graphwalker-cli-4.2.0.jar offline -m src/main/resources/com/cyberark/BstModel.json "random(edge_coverage(100))" | jq '.currentElementName'
+java -jar ../lib/graphwalker-cli-4.2.0.jar offline -m src/test/resources/com/cyberark/BstModel.json "random(edge_coverage(100))" | jq '.currentElementName'
 Generate the MyTest.java test skeleton:
 
 Generate MyTest.java
 $ mvn clean graphwalker:generate-sources
-$ java -jar ../lib/graphwalker-cli-4.2.0.jar source -i src/main/resources/com/cyberark/BstModel.json src/main/templates/java.template > src/test/java/com/cyberark/MyTest.java
+$ java -jar ../lib/graphwalker-cli-4.2.0.jar source -i src/test/resources/com/cyberark/BstModel.json src/test/templates/java.template > src/test/java/com/cyberark/MyTest.java
 Copy the new methods (e_Delete, e_GetNodes, e_ToMenu, v_Deleted, v_MenuDispatcher, v_NodesList) to BstTest.java , and rename 'v_VerifyInitialState' to 'v_Init'
 Delete the MyTest.java file
 
