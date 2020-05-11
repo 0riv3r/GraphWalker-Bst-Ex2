@@ -45,7 +45,7 @@ FOOTER<{{
   @Test
     public void runSmokeTest() {
         new TestBuilder()
-                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                .addContext(new MyTest().setNextElement(new Edge().setName("e_Init").build()),
                         MODEL_PATH,
                         new AStarPath(new ReachedVertex("v_MyVertex"))) // *** Set vertex name of the vertex to stop at ***
                 .execute();
@@ -54,7 +54,7 @@ FOOTER<{{
     @Test
     public void runFunctionalTest() {
         new TestBuilder()
-                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                .addContext(new MyTest().setNextElement(new Edge().setName("e_Init").build()),
                         MODEL_PATH,
                         new RandomPath(new EdgeCoverage(100))) // cover all edges
                 .execute();
@@ -63,7 +63,7 @@ FOOTER<{{
     @Test
     public void runStabilityTest() {
         new TestBuilder()
-                .addContext(new BstTest().setNextElement(new Edge().setName("e_Init").build()),
+                .addContext(new MyTest().setNextElement(new Edge().setName("e_Init").build()),
                         MODEL_PATH,
                         new RandomPath(new TimeDuration(1, TimeUnit.SECONDS))) // run the test for 1 second
                 .execute();
