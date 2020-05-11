@@ -135,5 +135,5 @@ Execute
 # If required, make sure to use the correct java:
 $ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
  
- 
-$ mvn clean graphwalker:generate-sources test site jacoco:prepare-agent jacoco:report
+
+$ mvn clean graphwalker:generate-test-sources test site jacoco:prepare-agent jacoco:report

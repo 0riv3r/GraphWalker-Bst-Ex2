@@ -126,10 +126,10 @@
                 <version>${graphwalker.version}</version>
                 <executions>
                     <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
+                        <id>generate-test-sources</id>
+                        <phase>generate-test-sources</phase>
                         <goals>
-                            <goal>generate-sources</goal>
+                            <goal>generate-test-sources</goal>
                         </goals>
                     </execution>
                 </executions>
